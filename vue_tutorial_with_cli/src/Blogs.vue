@@ -24,13 +24,14 @@ export default {
   },
   computed: {
     filteredPosts(){
-      console.log(this.posts)
+      let st = this.searchTerm
       return this.posts.map(function(p){
-        console.log(p, p.title)
-        return {title: p.title, body: p.body}
-      }).filter(function(p){
-        return p.title.match(this.searchTerm)
-      })
+        if(p.title && p.title.match(st)){
+          return p
+        }else{
+          return null
+        }
+      }).filter((obj) => obj );
     }
   },
   created(){
